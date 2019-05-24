@@ -1,0 +1,15 @@
+<mat-card class="card">
+  <form class="container" (submit)="onLogin()" [formGroup]="loginForm">
+    <mat-form-field class="loginFormField">
+      <input matInput placeholder="Login" formControlName="login" required>
+    </mat-form-field>
+    <mat-form-field class="loginFormField">
+      <input type="password" matInput placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+    <div *ngIf="triedLogin && !loginForm.touched" style="color: red">Invalid username or password!</div>
+    <div class="loginFormField">
+      <button type="submit" mat-raised-button color="primary">SIGN IN</button>
+      <button mat-raised-button (click)="onRegister()">Register</button>
+    </div>
+  </form>
+</mat-card>

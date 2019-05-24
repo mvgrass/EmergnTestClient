@@ -1,0 +1,25 @@
+<mat-card class="card">
+  <form class="container" (submit)="onSubmit()" [formGroup]="registerForm">
+    <mat-form-field class="formField">
+      <input matInput placeholder="Login" formControlName="login" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput placeholder="Name" formControlName="name" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput type="email" placeholder="Email" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input type="password" matInput placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input type="password" matInput placeholder="Repeat Password" formControlName="confirmPassword" required>
+      <mat-hint *ngIf="registerForm.errors?.password" style="color: red">Passwords should match</mat-hint>
+    </mat-form-field>
+    <div *ngIf="triedLogin && !registerForm.touched" style="color: red">Login or Email is already in use</div>
+    <div class="formField">
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</mat-card>

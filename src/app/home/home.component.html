@@ -1,0 +1,42 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <mat-toolbar-row>
+    <span>Hello, {{selfProfile?.name}}</span>
+    <button mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onLogout()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="userCard" *ngFor="let user of users">
+  <p>Login: {{user?.login}}</p>
+  <hr>
+  <p>Name: {{user?.name}}</p>
+  <hr>
+  <p>Email: {{user?.email}}</p>
+</mat-card>
+
+    <mat-card class="sidebar">
+      <mat-form-field>
+        <input matInput placeholder="Login">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Email">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="onSearch()">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+    </mat-card>
