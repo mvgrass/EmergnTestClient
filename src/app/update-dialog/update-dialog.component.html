@@ -1,0 +1,26 @@
+<div matDialogContent>
+  <form class="container" (submit)="onSubmit()" [formGroup]="updateForm">
+    <mat-form-field class="formField">
+      <input matInput placeholder="Login" formControlName="login" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput placeholder="Name" formControlName="name" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input matInput type="email" placeholder="Email" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input type="password" matInput placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+    <mat-form-field class="formField">
+      <input type="password" matInput placeholder="Repeat Password" formControlName="confirmPassword" required>
+      <mat-hint *ngIf="updateForm.errors?.password" style="color: red">Passwords should match</mat-hint>
+    </mat-form-field>
+    <div *ngIf="triedUpdate" style="color: red">Login or Email is already in use</div>
+
+    <div matDialogActions>
+      <button type="submit" mat-raised-button color="primary">Update</button>
+      <button mat-raised-button [matDialogClose]="false">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -17,6 +17,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -31,7 +32,8 @@ const routes: Routes = [
     LoginComponent,
     RegistrationComponent,
     DeleteAccountDialog,
-    HomeComponent
+    HomeComponent,
+    UpdateDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -48,7 +50,7 @@ const routes: Routes = [
     MatCardModule,
     ReactiveFormsModule
   ],
-  entryComponents: [DeleteAccountDialog],
+  entryComponents: [DeleteAccountDialog, UpdateDialogComponent],
   providers: [DatarequestService],
   bootstrap: [AppComponent]
 })

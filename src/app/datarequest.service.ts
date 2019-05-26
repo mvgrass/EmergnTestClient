@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -58,12 +58,23 @@ export class DatarequestService {
     })
   }
 
-  getUsers() {
+  getUsers(login?:string, name?:string, email?:string) {
     const authenticatedLogin = localStorage.getItem('login');
     const authenticatedPassword = localStorage.getItem('password');
 
+    let params = new HttpParams();
+    if(login) {
+      params = params.set('login', login);
+    }
+    if(name) {
+      params = params.set('name', name);
+    }
+    if(email) {
+      params = params.set('email', email);
+    }
+
     const headers = new HttpHeaders( {authorization : 'Basic ' + btoa(authenticatedLogin + ':' + authenticatedPassword) } );
-    return this.http.get(this.domain+"/api/users/", {headers: headers});
+    return this.http.get(this.domain+"/api/users/", {headers: headers, params: params});
   }
 
   getSelfAccount() {
@@ -71,15 +82,24 @@ export class DatarequestService {
     const authenticatedPassword = localStorage.getItem('password');
 
     const headers = new HttpHeaders({authorization : 'Basic ' + btoa(authenticatedLogin + ':' + authenticatedPassword) } );
-    return this.http.get(this.domain+'/api/users/'+authenticatedLogin, {headers:headers})
+    return this.http.get(this.domain+'/api/users/'+authenticatedLogin, {headers:headers});
   }
 
-  updateUser(user, callback) {
+  updateUser(user) {
+    const authenticatedLogin = localStorage.getItem('login');
+    const authenticatedPassword = localStorage.getItem('password');
 
+    const headers = new HttpHeaders({authorization : 'Basic ' + btoa(authenticatedLogin + ':' + authenticatedPassword) } );
+    return this.http.put(this.domain+'/api/users/'+authenticatedLogin, user, {headers:headers});
   }
 
   deleteUser() {
+    const authenticatedLogin = localStorage.getItem('login');
+    const authenticatedPassword = localStorage.getItem('password');
 
+    const headers = new HttpHeaders({authorization : 'Basic ' + btoa(authenticatedLogin + ':' + authenticatedPassword) } );
+
+    return this.http.delete(this.domain+'/api/users/'+authenticatedLogin, {headers: headers});
   }
 
   logout() {
